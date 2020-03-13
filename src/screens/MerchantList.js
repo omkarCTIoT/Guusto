@@ -57,7 +57,7 @@ class MerchantList extends Component {
                             large
                         />
                         <Button
-                            onPress={() => {this.props.select(this.state.selectedMerchant); this.props.cancel()}}
+                            onPress={() => {this.props.select(this.state.selectedMerchant)}}
                             buttonStyle={{ borderColor: 'grey', borderWidth: 2, backgroundColor: '#A0A0A0' }}
                             containerStyle={{ width: '100%' }}
                             title="Select"

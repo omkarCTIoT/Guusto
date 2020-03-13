@@ -6,7 +6,7 @@ import MerchantList from './MerchantList';
 
 class HomeScreen extends Component {
   state = {
-    value: 10,
+    value: 5,
     showMerchantList: false,
     currentMerchant: null
   }
@@ -70,8 +70,8 @@ class HomeScreen extends Component {
           visible={this.state.showMerchantList}
         >
           <MerchantList
-            select={(item) => this.setState({ currentMerchant: item })}
-            cancel={() => this.setState({ showMerchantList: false })}
+            select={(item) => this.setState({ currentMerchant: item , value: 5, showMerchantList: false})}
+            cancel={() => this.setState({ showMerchantList: false, currentMerchant: null })}
           />
         </Modal>
       </View>
