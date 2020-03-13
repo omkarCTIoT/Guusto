@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Image, Linking } from 'react-native';
 
 
 class MerchantTab extends Component {
@@ -34,7 +34,7 @@ class MerchantTab extends Component {
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{this.props.data.item.name}</Text>
                         <Text style={{ color: '#A0A0A0', fontSize: 16 }}>{this.props.data.item.shoppingOption}</Text>
                         <Text style={{ color: '#A0A0A0', fontSize: 16 }}>${this.props.data.item.minAmount} - ${this.props.data.item.maxAmount}</Text>
-                        <Text style={{ fontWeight: 'bold', color: '#6EC1B5', fontSize: 16 }}>View Website</Text>
+                        <Text onPress={() => Linking.openURL(this.props.data.item.website)} style={{ fontWeight: 'bold', color: '#6EC1B5', fontSize: 16 }}>View Website</Text>
                     </View>
                 </TouchableOpacity>
             </View>
