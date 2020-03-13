@@ -8,20 +8,12 @@
 
 import React from 'react';
 import Router from './src/Router';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 
 
 const App: () => React$Node = () => {
   return (
       <View style={styles.container}>
-      
             <Router />
           </View>
 
