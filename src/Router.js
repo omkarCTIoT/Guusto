@@ -18,14 +18,14 @@ const RouterComponent = () => {
 
                     <Scene
                         hideNavBar
-                        //initial={true}
+                        initial={true}
                         key='homeScreen'
                         component={HomeScreen}
                         title='Home'
                     />
                     <Scene
                     hideNavBar
-                    initial={true}
+                    //initial={true}
                         key='linksScreen'
                         component={MerchantList}
                         title='Merchant List'

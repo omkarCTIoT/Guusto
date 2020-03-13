@@ -7,7 +7,8 @@ import MerchantTab from '../components/MerchantTab';
 class MerchantList extends Component {
     state = {
         merchantList: null,
-        loading: true
+        loading: true,
+        selectedMerchant: null
     }
     constructor(props) {
         super(props);
@@ -23,7 +24,7 @@ class MerchantList extends Component {
     renderMerchantTab(item) {
         console.log(item);
         return (
-            <MerchantTab data={item} />
+            <MerchantTab selectedMerchant={ this.state.selectedMerchant} selectMerchant={(merchant) => this.setState({selectedMerchant: merchant})} data={item} />
         )
     }
     render() {
@@ -33,7 +34,6 @@ class MerchantList extends Component {
                 <View style={styles.homeBoxStyle}>
                     <TextInput
                         placeholderTextColor="grey"
-                        //value={this.props.email}
                         autoCorrect={false}
                         style={styles.inputStyle}
                         placeholder={'   Search'} />
@@ -49,7 +49,7 @@ class MerchantList extends Component {
 
                     <View style={styles.buttonBoxStyle}>
                         <Button
-                            onPress={() => Actions.pop()}
+                            onPress={() => {this.props.cancel(), this.setState({selectedMerchant: null})}}
                             buttonStyle={{ borderColor: '#6EC1B5', backgroundColor: 'white', borderWidth: 2 }}
                             containerStyle={{ width: '100%' }}
                             title="Cancel"
@@ -57,7 +57,7 @@ class MerchantList extends Component {
                             large
                         />
                         <Button
-                            onPress={() => Actions.pop()}
+                            onPress={() => {this.props.select(this.state.selectedMerchant); this.props.cancel()}}
                             buttonStyle={{ borderColor: 'grey', borderWidth: 2, backgroundColor: '#A0A0A0' }}
                             containerStyle={{ width: '100%' }}
                             title="Select"

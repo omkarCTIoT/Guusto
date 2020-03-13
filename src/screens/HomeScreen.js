@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView, Image, Dimensions, Linking, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, Image, Modal } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button, Slider } from 'react-native-elements';
+import MerchantList from './MerchantList';
 
 class HomeScreen extends Component {
   state = {
-    value: 10
+    value: 10,
+    showMerchantList: false,
+    currentMerchant: null
   }
   constructor(props) {
     super(props);
@@ -21,16 +24,20 @@ class HomeScreen extends Component {
           />
           <View style={styles.detailBoxStyle}>
             <Text style={styles.headingStyle}>Select Merchant</Text>
-            <Text style={styles.subHeadingStyle}>Recepient will choose any partner merchant</Text>
+            {this.state.currentMerchant !== null ? <Image
+              style={{ width: '50%', height: '50%', resizeMode: 'contain' }}
+              source={{ uri: this.state.currentMerchant.item.image }}
+            /> : <Text style={styles.subHeadingStyle}>Recepient will choose any partner merchant</Text>}
             <Button
-              onPress={() => Actions.linksScreen()}
+              onPress={() => this.setState({ showMerchantList: true })}
               buttonStyle={{ borderColor: '#6EC1B5', backgroundColor: 'white', borderWidth: 2 }}
               containerStyle={{ width: '100%' }}
               title="Select"
               type="outline"
               large
             />
-            <View style={{ width: '100%', alignItems: 'stretch', justifyContent: 'center' }}>
+
+            {this.state.currentMerchant !== null ? <View style={{ width: '100%', alignItems: 'stretch', justifyContent: 'center' }}>
               <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Text style={{
                   fontSize: 18,
@@ -49,13 +56,24 @@ class HomeScreen extends Component {
                 thumbStyle={{ borderColor: '#6EC1B5', borderWidth: 1 }}
                 trackStyle={{ color: '#6EC1B5' }}
                 value={this.state.value}
-                onValueChange={value => this.setState({ value })}
-                minimumValue={2}
-                maximumValue={12}
+                onValueChange={v => this.setState({  value:Math.round(v)})}
+                minimumValue={this.state.currentMerchant.item.minAmount}
+                maximumValue={this.state.currentMerchant.item.maxAmount}
               />
-            </View>
+            </View> : null}
           </View>
+
         </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.showMerchantList}
+        >
+          <MerchantList
+            select={(item) => this.setState({ currentMerchant: item })}
+            cancel={() => this.setState({ showMerchantList: false })}
+          />
+        </Modal>
       </View>
     )
   }
