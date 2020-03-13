@@ -1,10 +1,6 @@
 import React from 'react';
-import { Scene, Router, Actions, Stack, Tabs, Drawer } from 'react-native-router-flux';
+import { Scene, Router, Actions, Stack} from 'react-native-router-flux';
 import HomeScreen from './screens/HomeScreen';
-import MerchantList from './screens/MerchantList';
-
-
-
 
 const RouterComponent = () => {
 
@@ -23,14 +19,6 @@ const RouterComponent = () => {
                         component={HomeScreen}
                         title='Home'
                     />
-                    <Scene
-                    hideNavBar
-                    //initial={true}
-                        key='linksScreen'
-                        component={MerchantList}
-                        title='Merchant List'
-                    />
-
                 </Stack>
                 </Scene>
         </Router>

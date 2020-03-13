@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView, Image, Modal } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Text, StyleSheet, View, Image, Modal } from 'react-native';
 import { Button, Slider } from 'react-native-elements';
 import MerchantList from './MerchantList';
 
